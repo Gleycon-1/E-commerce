@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShopEase - E-commerce Platform</title>
+  <title>ShopEase - Sua Plataforma de E-commerce</title>
   <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -93,1318 +93,1314 @@
 <body>
   <div id="root"></div>
   <script type="text/babel">
-    // Redux Store Setup
-const initialState = {
-  products: [
-    { id: 1, name: 'Premium Wireless Headphones', category: 'electronics', price: 129.99, rating: 4.5, image: 'headphones', stock: 15, description: 'High-quality wireless headphones with noise cancellation and premium sound.' },
-    { id: 2, name: 'Smart Fitness Watch', category: 'electronics', price: 89.99, rating: 4.2, image: 'watch', stock: 8, description: 'Track your fitness goals with this advanced smartwatch featuring heart rate monitoring.' },
-    { id: 3, name: 'Organic Cotton T-shirt', category: 'clothing', price: 24.99, rating: 4.0, image: 'tshirt', stock: 25, description: 'Comfortable and eco-friendly t-shirt made from 100% organic cotton.' },
-    { id: 4, name: 'Leather Wallet', category: 'accessories', price: 49.99, rating: 4.8, image: 'wallet', stock: 12, description: 'Genuine leather wallet with multiple card slots and RFID protection.' },
-    { id: 5, name: 'Stainless Steel Water Bottle', category: 'home', price: 19.99, rating: 4.3, image: 'bottle', stock: 30, description: 'Eco-friendly, double-walled insulated water bottle that keeps drinks cold for 24 hours.' },
-    { id: 6, name: 'Wireless Charging Pad', category: 'electronics', price: 34.99, rating: 4.1, image: 'charger', stock: 18, description: 'Fast wireless charging pad compatible with all Qi-enabled devices.' },
-    { id: 7, name: 'Denim Jeans', category: 'clothing', price: 59.99, rating: 4.4, image: 'jeans', stock: 22, description: 'Classic fit denim jeans with stretch technology for maximum comfort.' },
-    { id: 8, name: 'Ceramic Coffee Mug', category: 'home', price: 14.99, rating: 4.7, image: 'mug', stock: 40, description: 'Elegant ceramic coffee mug with heat-retention technology.' },
-  ],
-  cart: [],
-  filters: {
-    category: 'all',
-    priceRange: [0, 200],
-    searchQuery: '',
-  },
-  ui: {
-    isCartOpen: false,
-    isCheckoutOpen: false,
-    currentStep: 1,
-  }
-};
-
-// Action Types
-const ADD_TO_CART = 'ADD_TO_CART';
-const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
-const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
-const CLEAR_CART = 'CLEAR_CART';
-const SET_FILTER = 'SET_FILTER';
-const TOGGLE_CART = 'TOGGLE_CART';
-const TOGGLE_CHECKOUT = 'TOGGLE_CHECKOUT';
-const SET_CHECKOUT_STEP = 'SET_CHECKOUT_STEP';
-
-// Action Creators
-const addToCart = (product) => ({
-  type: ADD_TO_CART,
-  payload: product
-});
-
-const removeFromCart = (productId) => ({
-  type: REMOVE_FROM_CART,
-  payload: productId
-});
-
-const updateQuantity = (productId, quantity) => ({
-  type: UPDATE_QUANTITY,
-  payload: { productId, quantity }
-});
-
-const clearCart = () => ({
-  type: CLEAR_CART
-});
-
-const setFilter = (filterType, value) => ({
-  type: SET_FILTER,
-  payload: { filterType, value }
-});
-
-const toggleCart = () => ({
-  type: TOGGLE_CART
-});
-
-const toggleCheckout = () => ({
-  type: TOGGLE_CHECKOUT
-});
-
-const setCheckoutStep = (step) => ({
-  type: SET_CHECKOUT_STEP,
-  payload: step
-});
-
-// Reducers
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_TO_CART:
-      const existingItem = state.cart.find(item => item.id === action.payload.id);
-      if (existingItem) {
-        return {
-          ...state,
-          cart: state.cart.map(item =>
-            item.id === action.payload.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          )
-        };
-      } else {
-        return {
-          ...state,
-          cart: [...state.cart, { ...action.payload, quantity: 1 }]
-        };
+    // Configuração da Store Redux
+    const initialState = {
+      products: [
+        { id: 1, name: 'Fone de Ouvido Premium sem Fio', category: 'eletrônicos', price: 129.99, rating: 4.5, image: 'headphones', stock: 15, description: 'Fones de ouvido sem fio de alta qualidade com cancelamento de ruído e som premium.' },
+        { id: 2, name: 'Relógio Smart Fitness', category: 'eletrônicos', price: 89.99, rating: 4.2, image: 'watch', stock: 8, description: 'Monitore suas metas de fitness com este smartwatch avançado com monitoramento de frequência cardíaca.' },
+        { id: 3, name: 'Camiseta de Algodão Orgânico', category: 'vestuário', price: 24.99, rating: 4.0, image: 'tshirt', stock: 25, description: 'Camiseta confortável e ecologicamente correta feita de algodão 100% orgânico.' },
+        { id: 4, name: 'Carteira de Couro', category: 'acessórios', price: 49.99, rating: 4.8, image: 'wallet', stock: 12, description: 'Carteira de couro genuíno com vários compartimentos para cartões e proteção RFID.' },
+        { id: 5, name: 'Garrafa de Água de Aço Inoxidável', category: 'casa', price: 19.99, rating: 4.3, image: 'bottle', stock: 30, description: 'Garrafa de água isolada a vácuo, ecológica, que mantém as bebidas geladas por 24 horas.' },
+        { id: 6, name: 'Base de Carregamento sem Fio', category: 'eletrônicos', price: 34.99, rating: 4.1, image: 'charger', stock: 18, description: 'Base de carregamento sem fio rápida compatível com todos os dispositivos habilitados para Qi.' },
+        { id: 7, name: 'Calça Jeans Denim', category: 'vestuário', price: 59.99, rating: 4.4, image: 'jeans', stock: 22, description: 'Calça jeans com corte clássico e tecnologia stretch para máximo conforto.' },
+        { id: 8, name: 'Caneca de Café de Cerâmica', category: 'casa', price: 14.99, rating: 4.7, image: 'mug', stock: 40, description: 'Caneca de café de cerâmica elegante com tecnologia de retenção de calor.' },
+      ],
+      cart: [],
+      filters: {
+        category: 'todos', // Traduzido de 'all'
+        priceRange: [0, 200],
+        searchQuery: '',
+      },
+      ui: {
+        isCartOpen: false,
+        isCheckoutOpen: false,
+        currentStep: 1,
       }
-      
-    case REMOVE_FROM_CART:
-      return {
-        ...state,
-        cart: state.cart.filter(item => item.id !== action.payload)
-      };
-      
-    case UPDATE_QUANTITY:
-      return {
-        ...state,
-        cart: state.cart.map(item =>
-          item.id === action.payload.productId
-            ? { ...item, quantity: action.payload.quantity }
-            : item
-        )
-      };
-      
-    case CLEAR_CART:
-      return {
-        ...state,
-        cart: []
-      };
-      
-    case SET_FILTER:
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          [action.payload.filterType]: action.payload.value
-        }
-      };
-      
-    case TOGGLE_CART:
-      return {
-        ...state,
-        ui: {
-          ...state.ui,
-          isCartOpen: !state.ui.isCartOpen,
-          isCheckoutOpen: false
-        }
-      };
-      
-    case TOGGLE_CHECKOUT:
-      return {
-        ...state,
-        ui: {
-          ...state.ui,
-          isCheckoutOpen: !state.ui.isCheckoutOpen,
-          isCartOpen: false,
-          currentStep: 1
-        }
-      };
-      
-    case SET_CHECKOUT_STEP:
-      return {
-        ...state,
-        ui: {
-          ...state.ui,
-          currentStep: action.payload
-        }
-      };
-      
-    default:
-      return state;
-  }
-};
+    };
 
-// Create Redux Store
-const store = Redux.createStore(rootReducer);
+    // Tipos de Ação
+    const ADD_TO_CART = 'ADD_TO_CART';
+    const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+    const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
+    const CLEAR_CART = 'CLEAR_CART';
+    const SET_FILTER = 'SET_FILTER';
+    const TOGGLE_CART = 'TOGGLE_CART';
+    const TOGGLE_CHECKOUT = 'TOGGLE_CHECKOUT';
+    const SET_CHECKOUT_STEP = 'SET_CHECKOUT_STEP';
 
-   // React Components
-const { Provider, useSelector, useDispatch } = ReactRedux;
+    // Criadores de Ação
+    const addToCart = (product) => ({
+      type: ADD_TO_CART,
+      payload: product
+    });
 
-// SVG Icons Component
-const Icons = {
-  cart: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-    </svg>
-  ),
-  search: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-    </svg>
-  ),
-  close: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-    </svg>
-  ),
-  plus: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-    </svg>
-  ),
-  minus: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 12H6" />
-    </svg>
-  ),
-  trash: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-    </svg>
-  ),
-  star: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
-      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-    </svg>
-  ),
-  check: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-    </svg>
-  ),
-  chevronRight: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-    </svg>
-  ),
-  chevronLeft: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-    </svg>
-  ),
-  menu: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  ),
-};
+    const removeFromCart = (productId) => ({
+      type: REMOVE_FROM_CART,
+      payload: productId
+    });
 
-// Product Image Component
-const ProductImage = ({ category, name }) => {
-  const colors = {
-    electronics: '#e0f2fe',
-    clothing: '#fef3c7',
-    accessories: '#f3e8ff',
-    home: '#dcfce7',
-  };
-  
-  const icons = {
-    headphones: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-      </svg>
-    ),
-    watch: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    tshirt: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M10 2v4M14 2v4" />
-      </svg>
-    ),
-    wallet: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-      </svg>
-    ),
-    bottle: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-      </svg>
-    ),
-    charger: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
-    jeans: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 2h8m-4 14v-4m-4 8h8m-8 0c0-4 4-4 4-8 0 4 4 4 4 8m-8 0v4m8-4v4m-8-20v4m8-4v4" />
-      </svg>
-    ),
-    mug: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-  };
+    const updateQuantity = (productId, quantity) => ({
+      type: UPDATE_QUANTITY,
+      payload: { productId, quantity }
+    });
 
-  const bgColor = colors[category] || '#f3f4f6';
-  const icon = icons[name.toLowerCase().split(' ')[0]] || icons[name.toLowerCase().split(' ')[1]] || (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-    </svg>
-  );
+    const clearCart = () => ({
+      type: CLEAR_CART
+    });
 
-  return (
-    <div className="flex items-center justify-center w-full h-48 rounded-t-lg" style={{ backgroundColor: bgColor }}>
-      {icon}
-    </div>
-  );
-};
+    const setFilter = (filterType, value) => ({
+      type: SET_FILTER,
+      payload: { filterType, value }
+    });
 
-// Header Component
-const Header = () => {
-  const cart = useSelector(state => state.cart);
-  const isCartOpen = useSelector(state => state.ui.isCartOpen);
-  const dispatch = useDispatch();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  
-  const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0);
-  
-  return (
-    <header className="bg-white shadow-sm sticky top-0 z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <div className="flex-shrink-0 flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary-600" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
-              </svg>
-              <span className="ml-2 text-xl font-bold text-gray-800">ShopEase</span>
-            </div>
-            <nav className="hidden md:ml-6 md:flex md:space-x-8">
-              <a href="#" className="border-primary-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Home
-              </a>
-              <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Products
-              </a>
-              <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Categories
-              </a>
-              <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Deals
-              </a>
-            </nav>
-          </div>
-          <div className="flex items-center">
-            <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
-              <button 
-                className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                onClick={() => dispatch(toggleCart())}
-              >
-                <span className="sr-only">View cart</span>
-                <div className="relative">
-                  <Icons.cart />
-                  {cartItemsCount > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                      {cartItemsCount}
-                    </span>
-                  )}
-                </div>
-              </button>
-            </div>
-            <div className="flex items-center md:hidden">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
-              >
-                <span className="sr-only">Open main menu</span>
-                <Icons.menu />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+    const toggleCart = () => ({
+      type: TOGGLE_CART
+    });
 
-      {/* Mobile menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="pt-2 pb-3 space-y-1">
-            <a href="#" className="bg-primary-50 border-primary-500 text-primary-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-              Home
-            </a>
-            <a href="#" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-              Products
-            </a>
-            <a href="#" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-              Categories
-            </a>
-            <a href="#" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-              Deals
-            </a>
-            <div className="border-transparent flex justify-between items-center pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-              <span className="text-gray-500">Cart</span>
-              <button 
-                className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                onClick={() => {
-                  dispatch(toggleCart());
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                <div className="relative">
-                  <Icons.cart />
-                  {cartItemsCount > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                      {cartItemsCount}
-                    </span>
-                  )}
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-};
+    const toggleCheckout = () => ({
+      type: TOGGLE_CHECKOUT
+    });
 
-// Hero Component
-const Hero = () => {
-  return (
-    <div className="relative bg-gradient-to-r from-primary-600 to-primary-800 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:pb-28 xl:pb-32">
-          <div className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-            <div className="sm:text-center lg:text-left">
-              <h1 className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
-                <span className="block">Shop the latest</span>
-                <span className="block text-primary-200">trending products</span>
-              </h1>
-              <p className="mt-3 text-base text-primary-100 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                Discover amazing products at unbeatable prices. Free shipping on orders over $50.
-              </p>
-              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                <div className="rounded-md shadow">
-                  <a href="#products" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-                    Shop Now
-                  </a>
-                </div>
-                <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-500 hover:bg-primary-600 md:py-4 md:text-lg md:px-10">
-                    View Deals
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <div className="h-56 w-full bg-primary-700 sm:h-72 md:h-96 lg:w-full lg:h-full flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-64 w-64 text-primary-300 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-};
+    const setCheckoutStep = (step) => ({
+      type: SET_CHECKOUT_STEP,
+      payload: step
+    });
 
-// Filters Component
-const Filters = () => {
-  const filters = useSelector(state => state.filters);
-  const dispatch = useDispatch();
-  const [isFilterOpen, setIsFilterOpen] = React.useState(false);
-  
-  const categories = ['all', 'electronics', 'clothing', 'accessories', 'home'];
-  
-  const handleCategoryChange = (category) => {
-    dispatch(setFilter('category', category));
-  };
-  
-  const handleSearchChange = (e) => {
-    dispatch(setFilter('searchQuery', e.target.value));
-  };
-  
-  const handlePriceRangeChange = (e, index) => {
-    const newRange = [...filters.priceRange];
-    newRange[index] = parseInt(e.target.value);
-    dispatch(setFilter('priceRange', newRange));
-  };
-  
-  return (
-    <div className="bg-white shadow-sm rounded-lg p-4 mb-6">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-        <div className="relative flex-grow max-w-md mb-4 md:mb-0">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Icons.search />
-          </div>
-          <input
-            type="text"
-            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-            placeholder="Search products..."
-            value={filters.searchQuery}
-            onChange={handleSearchChange}
-          />
-        </div>
-        
-        <button 
-          className="flex items-center justify-center md:hidden bg-primary-100 text-primary-700 px-4 py-2 rounded-md font-medium"
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-          </svg>
-          Filters
-        </button>
-        
-        <div className={`${isFilterOpen ? 'block' : 'hidden'} md:flex md:items-center md:space-x-4 mt-4 md:mt-0`}>
-          <div className="mb-4 md:mb-0">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-            <div className="flex flex-wrap gap-2">
-              {categories.map(category => (
-                <button
-                  key={category}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    filters.category === category
-                      ? 'bg-primary-500 text-white'
-                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
-                  }`}
-                  onClick={() => handleCategoryChange(category)}
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </button>
-              ))}
-            </div>
-          </div>
+    // Reducers
+    const rootReducer = (state = initialState, action) => {
+      switch (action.type) {
+        case ADD_TO_CART:
+          const existingItem = state.cart.find(item => item.id === action.payload.id);
+          if (existingItem) {
+            return {
+              ...state,
+              cart: state.cart.map(item =>
+                item.id === action.payload.id
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item
+              )
+            };
+          } else {
+            return {
+              ...state,
+              cart: [...state.cart, { ...action.payload, quantity: 1 }]
+            };
+          }
           
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
-            <div className="flex items-center space-x-2">
-              <span className="text-gray-600">${filters.priceRange[0]}</span>
-              <input
-                type="range"
-                min="0"
-                max="200"
-                value={filters.priceRange[0]}
-                onChange={(e) => handlePriceRangeChange(e, 0)}
-                className="w-24 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-              />
-              <span className="mx-2">-</span>
-              <input
-                type="range"
-                min="0"
-                max="200"
-                value={filters.priceRange[1]}
-                onChange={(e) => handlePriceRangeChange(e, 1)}
-                className="w-24 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-              />
-              <span className="text-gray-600">${filters.priceRange[1]}</span>
+        case REMOVE_FROM_CART:
+          return {
+            ...state,
+            cart: state.cart.filter(item => item.id !== action.payload)
+          };
+          
+        case UPDATE_QUANTITY:
+          return {
+            ...state,
+            cart: state.cart.map(item =>
+              item.id === action.payload.productId
+                ? { ...item, quantity: action.payload.quantity }
+                : item
+            )
+          };
+          
+        case CLEAR_CART:
+          return {
+            ...state,
+            cart: []
+          };
+          
+        case SET_FILTER:
+          return {
+            ...state,
+            filters: {
+              ...state.filters,
+              [action.payload.filterType]: action.payload.value
+            }
+          };
+          
+        case TOGGLE_CART:
+          return {
+            ...state,
+            ui: {
+              ...state.ui,
+              isCartOpen: !state.ui.isCartOpen,
+              isCheckoutOpen: false
+            }
+          };
+          
+        case TOGGLE_CHECKOUT:
+          return {
+            ...state,
+            ui: {
+              ...state.ui,
+              isCheckoutOpen: !state.ui.isCheckoutOpen,
+              isCartOpen: false,
+              currentStep: 1
+            }
+          };
+          
+        case SET_CHECKOUT_STEP:
+          return {
+            ...state,
+            ui: {
+              ...state.ui,
+              currentStep: action.payload
+            }
+          };
+          
+        default:
+          return state;
+      }
+    };
+
+    // Cria a Store Redux
+    const store = Redux.createStore(rootReducer);
+
+    // Componentes React
+    const { Provider, useSelector, useDispatch } = ReactRedux;
+
+    // Componente de Ícones SVG
+    const Icons = {
+      cart: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      ),
+      search: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      ),
+      close: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      ),
+      plus: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+      ),
+      minus: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 12H6" />
+        </svg>
+      ),
+      trash: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+      ),
+      star: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+      ),
+      check: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+      ),
+      chevronRight: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      ),
+      chevronLeft: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      ),
+      menu: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      ),
+    };
+
+    // Componente de Imagem do Produto
+    const ProductImage = ({ category, name }) => {
+      const colors = {
+        eletrônicos: '#e0f2fe',
+        vestuário: '#fef3c7',
+        acessórios: '#f3e8ff',
+        casa: '#dcfce7',
+      };
+      
+      const icons = {
+        headphones: (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+          </svg>
+        ),
+        watch: (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        ),
+        tshirt: (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M10 2v4M14 2v4" />
+          </svg>
+        ),
+        wallet: (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        ),
+        bottle: (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+          </svg>
+        ),
+        charger: (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        ),
+        jeans: (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 2h8m-4 14v-4m-4 8h8m-8 0c0-4 4-4 4-8 0 4 4 4 4 8m-8 0v4m8-4v4m-8-20v4m8-4v4" />
+          </svg>
+        ),
+        mug: (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        ),
+      };
+
+      const bgColor = colors[category] || '#f3f4f6';
+      const icon = icons[name.toLowerCase().split(' ')[0]] || icons[name.toLowerCase().split(' ')[1]] || (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+      );
+
+      return (
+        <div className="flex items-center justify-center w-full h-48 rounded-t-lg" style={{ backgroundColor: bgColor }}>
+          {icon}
+        </div>
+      );
+    };
+
+    // Componente do Cabeçalho
+    const Header = () => {
+      const cart = useSelector(state => state.cart);
+      const isCartOpen = useSelector(state => state.ui.isCartOpen);
+      const dispatch = useDispatch();
+      const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+      
+      const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0);
+      
+      return (
+        <header className="bg-white shadow-sm sticky top-0 z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between h-16">
+              <div className="flex items-center">
+                <div className="flex-shrink-0 flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
+                  </svg>
+                  <span className="ml-2 text-xl font-bold text-gray-800">ShopEase</span>
+                </div>
+                <nav className="hidden md:ml-6 md:flex md:space-x-8">
+                  <a href="#" className="border-primary-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Início
+                  </a>
+                  <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Produtos
+                  </a>
+                  <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Categorias
+                  </a>
+                  <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Ofertas
+                  </a>
+                </nav>
+              </div>
+              <div className="flex items-center">
+                <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
+                  <button 
+                    className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                    onClick={() => dispatch(toggleCart())}
+                  >
+                    <span className="sr-only">Ver carrinho</span>
+                    <div className="relative">
+                      <Icons.cart />
+                      {cartItemsCount > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                          {cartItemsCount}
+                        </span>
+                      )}
+                    </div>
+                  </button>
+                </div>
+                <div className="flex items-center md:hidden">
+                  <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                  >
+                    <span className="sr-only">Abrir menu principal</span>
+                    <Icons.menu />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
-// Product Card Component
-const ProductCard = ({ product }) => {
-  const dispatch = useDispatch();
-  
-  const handleAddToCart = () => {
-    dispatch(addToCart(product));
-  };
-  
-  return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden product-card transition-all duration-300">
-      <ProductImage category={product.category} name={product.image} />
-      <div className="p-4">
-        <div className="flex justify-between items-start">
-          <h3 className="text-lg font-medium text-gray-900 mb-1">{product.name}</h3>
-          <span className="bg-primary-100 text-primary-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
-            {product.category}
-          </span>
-        </div>
-        <div className="flex items-center mb-2">
-          {[...Array(5)].map((_, i) => (
-            <Icons.star key={i} />
-          ))}
-          <span className="text-xs text-gray-500 ml-1">({product.rating})</span>
-        </div>
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
-        <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-gray-900">${product.price.toFixed(2)}</span>
-          <button
-            onClick={handleAddToCart}
-            className="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 flex items-center"
-          >
-            <Icons.plus />
-            <span className="ml-1">Add</span>
-          </button>
-        </div>
-        <div className="mt-2 text-xs text-gray-500">
-          {product.stock > 5 ? (
-            <span className="text-green-600">In Stock</span>
-          ) : (
-            <span className="text-amber-600">Only {product.stock} left</span>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Product List Component
-const ProductList = () => {
-  const products = useSelector(state => state.products);
-  const filters = useSelector(state => state.filters);
-  
-  const filteredProducts = products.filter(product => {
-    // Filter by category
-    if (filters.category !== 'all' && product.category !== filters.category) {
-      return false;
-    }
-    
-    // Filter by price range
-    if (product.price < filters.priceRange[0] || product.price > filters.priceRange[1]) {
-      return false;
-    }
-    
-    // Filter by search query
-    if (filters.searchQuery && !product.name.toLowerCase().includes(filters.searchQuery.toLowerCase())) {
-      return false;
-    }
-    
-    return true;
-  });
-  
-  return (
-    <div id="products" className="mt-8">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Products</h2>
-      {filteredProducts.length === 0 ? (
-        <div className="text-center py-10 bg-gray-50 rounded-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <h3 className="mt-2 text-sm font-medium text-gray-900">No products found</h3>
-          <p className="mt-1 text-sm text-gray-500">
-            Try adjusting your filters or search query.
-          </p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
-
-// Cart Component
-const Cart = () => {
-  const cart = useSelector(state => state.cart);
-  const isCartOpen = useSelector(state => state.ui.isCartOpen);
-  const dispatch = useDispatch();
-  
-  const handleRemoveItem = (productId) => {
-    dispatch(removeFromCart(productId));
-  };
-  
-  const handleUpdateQuantity = (productId, quantity) => {
-    if (quantity < 1) return;
-    dispatch(updateQuantity(productId, quantity));
-  };
-  
-  const handleCheckout = () => {
-    dispatch(toggleCart());
-    dispatch(toggleCheckout());
-  };
-  
-  const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-  const shipping = subtotal > 50 ? 0 : 9.99;
-  const total = subtotal + shipping;
-  
-  if (!isCartOpen) return null;
-  
-  return (
-    <div className="fixed inset-0 overflow-hidden z-20" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onClick={() => dispatch(toggleCart())}></div>
-
-        <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-          <div className="pointer-events-auto w-screen max-w-md">
-            <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-              <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-                <div className="flex items-start justify-between">
-                  <h2 className="text-lg font-medium text-gray-900" id="slide-over-title">
-                    Shopping cart
-                  </h2>
-                  <div className="ml-3 flex h-7 items-center">
-                    <button
-                      type="button"
-                      className="-m-2 p-2 text-gray-400 hover:text-gray-500"
-                      onClick={() => dispatch(toggleCart())}
-                    >
-                      <span className="sr-only">Close panel</span>
-                      <Icons.close />
-                    </button>
-                  </div>
+          {/* Menu Mobile */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden">
+              <div className="pt-2 pb-3 space-y-1">
+                <a href="#" className="bg-primary-50 border-primary-500 text-primary-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                  Início
+                </a>
+                <a href="#" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                  Produtos
+                </a>
+                <a href="#" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                  Categorias
+                </a>
+                <a href="#" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                  Ofertas
+                </a>
+                <div className="border-transparent flex justify-between items-center pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                  <span className="text-gray-500">Carrinho</span>
+                  <button 
+                    className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                    onClick={() => {
+                      dispatch(toggleCart());
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    <div className="relative">
+                      <Icons.cart />
+                      {cartItemsCount > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                          {cartItemsCount}
+                        </span>
+                      )}
+                    </div>
+                  </button>
                 </div>
+              </div>
+            </div>
+          )}
+        </header>
+      );
+    };
 
-                <div className="mt-8">
-                  <div className="flow-root">
-                    {cart.length === 0 ? (
-                      <div className="text-center py-10">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <h3 className="mt-2 text-sm font-medium text-gray-900">Your cart is empty</h3>
-                        <p className="mt-1 text-sm text-gray-500">
-                          Looks like you haven't added any products yet.
-                        </p>
-                        <div className="mt-6">
-                          <button
-                            onClick={() => dispatch(toggleCart())}
-                            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                          >
-                            Continue Shopping
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <ul role="list" className="-my-6 divide-y divide-gray-200">
-                        {cart.map((item) => (
-                          <li key={item.id} className="flex py-6">
-                            <ProductImage category={item.category} name={item.image} />
-
-                            <div className="ml-4 flex flex-1 flex-col">
-                              <div>
-                                <div className="flex justify-between text-base font-medium text-gray-900">
-                                  <h3>
-                                    {item.name}
-                                  </h3>
-                                  <p className="ml-4">${(item.price * item.quantity).toFixed(2)}</p>
-                                </div>
-                                <p className="mt-1 text-sm text-gray-500">{item.category}</p>
-                              </div>
-
-                              <div className="flex flex-1 items-end justify-between text-sm">
-                                <div className="inline-flex items-center space-x-1 border border-gray-300 rounded-md">
-                                  <button
-                                    className="px-2 py-1 text-gray-600 hover:bg-gray-100"
-                                    onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
-                                  >
-                                    <Icons.minus />
-                                  </button>
-                                  <span className="font-medium">{item.quantity}</span>
-                                  <button
-                                    className="px-2 py-1 text-gray-600 hover:bg-gray-100"
-                                    onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
-                                  >
-                                    <Icons.plus />
-                                  </button>
-                                </div>
-
-
-                                <div className="flex">
-                                  <button
-                                    type="button"
-                                    className="font-medium text-primary-600 hover:text-primary-500"
-                                    onClick={() => handleRemoveItem(item.id)}
-                                  >
-                                    <Icons.trash />
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+    // Componente Hero
+    const Hero = () => {
+      return (
+        <div className="relative bg-gradient-to-r from-primary-600 to-primary-800 overflow-hidden">
+          <div className="max-w-7xl mx-auto">
+            <div className="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:pb-28 xl:pb-32">
+              <div className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                <div className="sm:text-center lg:text-left">
+                  <h1 className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
+                    <span className="block">Compre os últimos</span>
+                    <span className="block text-primary-200">produtos em alta</span>
+                  </h1>
+                  <p className="mt-3 text-base text-primary-100 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                    Descubra produtos incríveis com preços imbatíveis. Frete grátis para pedidos acima de R$ 50.
+                  </p>
+                  <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                    <div className="rounded-md shadow">
+                      <a href="#products" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+                        Comprar Agora
+                      </a>
+                    </div>
+                    <div className="mt-3 sm:mt-0 sm:ml-3">
+                      <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-500 hover:bg-primary-600 md:py-4 md:text-lg md:px-10">
+                        Ver Ofertas
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+            <div className="h-56 w-full bg-primary-700 sm:h-72 md:h-96 lg:w-full lg:h-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-64 w-64 text-primary-300 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      );
+    };
 
-              {cart.length > 0 && (
-                <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                  <div className="flex justify-between text-base font-medium text-gray-900">
-                    <p>Subtotal</p>
-                    <p>${subtotal.toFixed(2)}</p>
-                  </div>
-                  <div className="flex justify-between text-base font-medium text-gray-900 mt-2">
-                    <p>Shipping</p>
-                    <p>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</p>
-                  </div>
-                  <div className="flex justify-between text-base font-medium text-gray-900 mt-2">
-                    <p>Total</p>
-                    <p>${total.toFixed(2)}</p>
-                  </div>
-                  <p className="mt-0.5 text-sm text-gray-500">
-                    {shipping === 0 ? 'Free shipping applied!' : 'Free shipping on orders over $50'}
-                  </p>
-                  <div className="mt-6">
+    // Componente de Filtros
+    const Filters = () => {
+      const filters = useSelector(state => state.filters);
+      const dispatch = useDispatch();
+      const [isFilterOpen, setIsFilterOpen] = React.useState(false);
+      
+      const categories = ['todos', 'eletrônicos', 'vestuário', 'acessórios', 'casa']; // Traduzido
+      
+      const handleCategoryChange = (category) => {
+        dispatch(setFilter('category', category));
+      };
+      
+      const handleSearchChange = (e) => {
+        dispatch(setFilter('searchQuery', e.target.value));
+      };
+      
+      const handlePriceRangeChange = (e, index) => {
+        const newRange = [...filters.priceRange];
+        newRange[index] = parseInt(e.target.value);
+        dispatch(setFilter('priceRange', newRange));
+      };
+      
+      return (
+        <div className="bg-white shadow-sm rounded-lg p-4 mb-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div className="relative flex-grow max-w-md mb-4 md:mb-0">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Icons.search />
+              </div>
+              <input
+                type="text"
+                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                placeholder="Buscar produtos..." // Traduzido
+                value={filters.searchQuery}
+                onChange={handleSearchChange}
+              />
+            </div>
+            
+            <button 
+              className="flex items-center justify-center md:hidden bg-primary-100 text-primary-700 px-4 py-2 rounded-md font-medium"
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              Filtros
+            </button>
+            
+            <div className={`${isFilterOpen ? 'block' : 'hidden'} md:flex md:items-center md:space-x-4 mt-4 md:mt-0`}>
+              <div className="mb-4 md:mb-0">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Categoria</label> {/* Traduzido */}
+                <div className="flex flex-wrap gap-2">
+                  {categories.map(category => (
                     <button
-                      onClick={handleCheckout}
-                      className="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-600 hover:bg-primary-700"
+                      key={category}
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${
+                        filters.category === category
+                          ? 'bg-primary-500 text-white'
+                          : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                      }`}
+                      onClick={() => handleCategoryChange(category)}
                     >
-                      Checkout
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
                     </button>
-                  </div>
-                  <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                    <p>
-                      or{' '}
-                      <button
-                        type="button"
-                        className="font-medium text-primary-600 hover:text-primary-500"
-                        onClick={() => dispatch(toggleCart())}
-                      >
-                        Continue Shopping →
-                      </button>
-                    </p>
-                  </div>
+                  ))}
                 </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Faixa de Preço</label> {/* Traduzido */}
+                <div className="flex items-center space-x-2">
+                  <span className="text-gray-600">R${filters.priceRange[0]}</span> {/* Traduzido para R$ */}
+                  <input
+                    type="range"
+                    min="0"
+                    max="200"
+                    value={filters.priceRange[0]}
+                    onChange={(e) => handlePriceRangeChange(e, 0)}
+                    className="w-24 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                  />
+                  <span className="mx-2">-</span>
+                  <input
+                    type="range"
+                    min="0"
+                    max="200"
+                    value={filters.priceRange[1]}
+                    onChange={(e) => handlePriceRangeChange(e, 1)}
+                    className="w-24 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                  />
+                  <span className="text-gray-600">R${filters.priceRange[1]}</span> {/* Traduzido para R$ */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // Componente de Cartão de Produto
+    const ProductCard = ({ product }) => {
+      const dispatch = useDispatch();
+      
+      const handleAddToCart = () => {
+        dispatch(addToCart(product));
+      };
+      
+      return (
+        <div className="bg-white rounded-lg shadow-md overflow-hidden product-card transition-all duration-300">
+          <ProductImage category={product.category} name={product.image} />
+          <div className="p-4">
+            <div className="flex justify-between items-start">
+              <h3 className="text-lg font-medium text-gray-900 mb-1">{product.name}</h3>
+              <span className="bg-primary-100 text-primary-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                {product.category}
+              </span>
+            </div>
+            <div className="flex items-center mb-2">
+              {[...Array(5)].map((_, i) => (
+                <Icons.star key={i} />
+              ))}
+              <span className="text-xs text-gray-500 ml-1">({product.rating})</span>
+            </div>
+            <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
+            <div className="flex items-center justify-between">
+              <span className="text-xl font-bold text-gray-900">R${product.price.toFixed(2)}</span> {/* Traduzido para R$ */}
+              <button
+                onClick={handleAddToCart}
+                className="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 flex items-center"
+              >
+                <Icons.plus />
+                <span className="ml-1">Adicionar</span> {/* Traduzido */}
+              </button>
+            </div>
+            <div className="mt-2 text-xs text-gray-500">
+              {product.stock > 5 ? (
+                <span className="text-green-600">Em Estoque</span> // Traduzido
+              ) : (
+                <span className="text-amber-600">Apenas {product.stock} restantes</span> // Traduzido
               )}
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-};
+      );
+    };
 
-// Checkout Component
-const Checkout = () => {
-  const cart = useSelector(state => state.cart);
-  const isCheckoutOpen = useSelector(state => state.ui.isCheckoutOpen);
-  const currentStep = useSelector(state => state.ui.currentStep);
-  const dispatch = useDispatch();
-  
-  const [formData, setFormData] = React.useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    address: '',
-    city: '',
-    state: '',
-    zip: '',
-    cardName: '',
-    cardNumber: '',
-    expDate: '',
-    cvv: '',
-  });
-  
-  const [errors, setErrors] = React.useState({});
-  
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error when user types
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
-  };
-  
-  const validateForm = () => {
-    const newErrors = {};
-    
-    if (currentStep === 1) {
-      if (!formData.firstName) newErrors.firstName = 'First name is required';
-      if (!formData.lastName) newErrors.lastName = 'Last name is required';
-      if (!formData.email) newErrors.email = 'Email is required';
-      else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
-      if (!formData.address) newErrors.address = 'Address is required';
-      if (!formData.city) newErrors.city = 'City is required';
-      if (!formData.state) newErrors.state = 'State is required';
-      if (!formData.zip) newErrors.zip = 'ZIP code is required';
-    }
-    
-    if (currentStep === 2) {
-      if (!formData.cardName) newErrors.cardName = 'Name on card is required';
-      if (!formData.cardNumber) newErrors.cardNumber = 'Card number is required';
-      else if (!/^\d{16}$/.test(formData.cardNumber.replace(/\s/g, ''))) 
-        newErrors.cardNumber = 'Card number must be 16 digits';
-      if (!formData.expDate) newErrors.expDate = 'Expiration date is required';
-      else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(formData.expDate)) 
-        newErrors.expDate = 'Format must be MM/YY';
-      if (!formData.cvv) newErrors.cvv = 'CVV is required';
-      else if (!/^\d{3,4}$/.test(formData.cvv)) newErrors.cvv = 'CVV must be 3 or 4 digits';
-    }
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-  
-  const handleNext = () => {
-    if (validateForm()) {
-      dispatch(setCheckoutStep(currentStep + 1));
-    }
-  };
-  
-  const handlePrevious = () => {
-    dispatch(setCheckoutStep(currentStep - 1));
-  };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      // Simulate order processing
-      setTimeout(() => { // Simulate API call
-        dispatch(clearCart());
-        dispatch(setCheckoutStep(4)); // Success step
-      }, 1000);
-    }
-  };
-  
-  const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-  const shipping = subtotal > 50 ? 0 : 9.99;
-  const tax = subtotal * 0.08;
-  const total = subtotal + shipping + tax;
-  
-  if (!isCheckoutOpen) return null;
-  
-  return (
-    <div className="fixed inset-0 overflow-hidden z-30" aria-labelledby="checkout-title" role="dialog" aria-modal="true">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onClick={() => dispatch(toggleCheckout())}></div>
+    // Componente de Lista de Produtos
+    const ProductList = () => {
+      const products = useSelector(state => state.products);
+      const filters = useSelector(state => state.filters);
+      
+      const filteredProducts = products.filter(product => {
+        // Filtrar por categoria
+        if (filters.category !== 'todos' && product.category !== filters.category) { // Traduzido 'todos'
+          return false;
+        }
+        
+        // Filtrar por faixa de preço
+        if (product.price < filters.priceRange[0] || product.price > filters.priceRange[1]) {
+          return false;
+        }
+        
+        // Filtrar por consulta de busca
+        if (filters.searchQuery && !product.name.toLowerCase().includes(filters.searchQuery.toLowerCase())) {
+          return false;
+        }
+        
+        return true;
+      });
+      
+      return (
+        <div id="products" className="mt-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Nossos Produtos</h2> {/* Traduzido */}
+          {filteredProducts.length === 0 ? (
+            <div className="text-center py-10 bg-gray-50 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h3 className="mt-2 text-sm font-medium text-gray-900">Nenhum produto encontrado</h3> {/* Traduzido */}
+              <p className="mt-1 text-sm text-gray-500">
+                Tente ajustar seus filtros ou sua busca. {/* Traduzido */}
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredProducts.map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    };
 
-        <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-          <div className="pointer-events-auto w-screen max-w-2xl">
-            <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-              <div className="flex-1">
-                <div className="bg-gray-50 px-4 py-6 sm:px-6">
-                  <div className="flex items-start justify-between">
-                    <h2 className="text-lg font-medium text-gray-900" id="checkout-title">
-                      Checkout
-                    </h2>
-                    <div className="ml-3 flex h-7 items-center">
-                      <button
-                        type="button"
-                        className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none"
-                        onClick={() => dispatch(toggleCheckout())}
-                      >
-                        <span className="sr-only">Close panel</span>
-                        <Icons.close />
-                      </button>
+    // Componente do Carrinho
+    const Cart = () => {
+      const cart = useSelector(state => state.cart);
+      const isCartOpen = useSelector(state => state.ui.isCartOpen);
+      const dispatch = useDispatch();
+      
+      const handleRemoveItem = (productId) => {
+        dispatch(removeFromCart(productId));
+      };
+      
+      const handleUpdateQuantity = (productId, quantity) => {
+        if (quantity < 1) return;
+        dispatch(updateQuantity(productId, quantity));
+      };
+      
+      const handleCheckout = () => {
+        dispatch(toggleCart());
+        dispatch(toggleCheckout());
+      };
+      
+      const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+      const shipping = subtotal > 50 ? 0 : 9.99;
+      const total = subtotal + shipping;
+      
+      if (!isCartOpen) return null;
+      
+      return (
+        <div className="fixed inset-0 overflow-hidden z-20" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onClick={() => dispatch(toggleCart())}></div>
+
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+              <div className="pointer-events-auto w-screen max-w-md">
+                <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                  <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                    <div className="flex items-start justify-between">
+                      <h2 className="text-lg font-medium text-gray-900" id="slide-over-title">
+                        Carrinho de compras {/* Traduzido */}
+                      </h2>
+                      <div className="ml-3 flex h-7 items-center">
+                        <button
+                          type="button"
+                          className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                          onClick={() => dispatch(toggleCart())}
+                        >
+                          <span className="sr-only">Fechar painel</span> {/* Traduzido */}
+                          <Icons.close />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="mt-8">
+                      <div className="flow-root">
+                        {cart.length === 0 ? (
+                          <div className="text-center py-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <h3 className="mt-2 text-sm font-medium text-gray-900">Seu carrinho está vazio</h3> {/* Traduzido */}
+                            <p className="mt-1 text-sm text-gray-500">
+                              Parece que você ainda não adicionou nenhum produto. {/* Traduzido */}
+                            </p>
+                            <div className="mt-6">
+                              <button
+                                onClick={() => dispatch(toggleCart())}
+                                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                              >
+                                Continuar Comprando {/* Traduzido */}
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <ul role="list" className="-my-6 divide-y divide-gray-200">
+                            {cart.map((item) => (
+                              <li key={item.id} className="flex py-6">
+                                <ProductImage category={item.category} name={item.image} />
+
+                                <div className="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div className="flex justify-between text-base font-medium text-gray-900">
+                                      <h3>
+                                        {item.name}
+                                      </h3>
+                                      <p className="ml-4">R${(item.price * item.quantity).toFixed(2)}</p> {/* Traduzido para R$ */}
+                                    </div>
+                                    <p className="mt-1 text-sm text-gray-500">{item.category}</p>
+                                  </div>
+
+                                  <div className="flex flex-1 items-end justify-between text-sm">
+                                    <div className="inline-flex items-center space-x-1 border border-gray-300 rounded-md">
+                                      <button
+                                        className="px-2 py-1 text-gray-600 hover:bg-gray-100"
+                                        onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
+                                      >
+                                        <Icons.minus />
+                                      </button>
+                                      <span className="font-medium">{item.quantity}</span>
+                                      <button
+                                        className="px-2 py-1 text-gray-600 hover:bg-gray-100"
+                                        onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
+                                      >
+                                        <Icons.plus />
+                                      </button>
+                                    </div>
+
+
+                                    <div className="flex">
+                                      <button
+                                        type="button"
+                                        className="font-medium text-primary-600 hover:text-primary-500"
+                                        onClick={() => handleRemoveItem(item.id)}
+                                      >
+                                        <Icons.trash />
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
                     </div>
                   </div>
 
-                  <div className="mt-8">
-                    {/* Checkout Steps */}
-                    <nav className="flex items-center justify-center">
-                      <div className="flex items-center space-x-2">
-                        <div className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-bold ${currentStep >= 1 ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
-                          1
-                        </div>
-                        <span className="text-sm font-medium text-gray-900">Shipping</span>
+                  {cart.length > 0 && (
+                    <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                      <div className="flex justify-between text-base font-medium text-gray-900">
+                        <p>Subtotal</p> {/* Traduzido */}
+                        <p>R${subtotal.toFixed(2)}</p> {/* Traduzido para R$ */}
                       </div>
-                      <div className={`flex-1 mx-2 h-0.5 rounded-full ${currentStep >= 2 ? 'bg-primary-600' : 'bg-gray-200'}`}></div>
-
-                      <div className="flex items-center space-x-2">
-                        <div className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-bold ${currentStep >= 2 ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
-                          2
-                        </div>
-                        <span className="text-sm font-medium text-gray-900">Payment</span>
+                      <div className="flex justify-between text-base font-medium text-gray-900 mt-2">
+                        <p>Frete</p> {/* Traduzido */}
+                        <p>{shipping === 0 ? 'Grátis' : `R$${shipping.toFixed(2)}`}</p> {/* Traduzido */}
                       </div>
-                      <div className={`flex-1 mx-2 h-0.5 rounded-full ${currentStep >= 3 ? 'bg-primary-600' : 'bg-gray-200'}`}></div>
-
-                      <div className="flex items-center space-x-2">
-                        <div className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-bold ${currentStep >= 3 ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
-                          3
-                        </div>
-                        <span className="text-sm font-medium text-gray-900">Review</span>
+                      <div className="flex justify-between text-base font-medium text-gray-900 mt-2">
+                        <p>Total</p> {/* Traduzido */}
+                        <p>R${total.toFixed(2)}</p> {/* Traduzido para R$ */}
                       </div>
-                    </nav>
+                      <p className="mt-0.5 text-sm text-gray-500">
+                        {shipping === 0 ? 'Frete grátis aplicado!' : 'Frete grátis em pedidos acima de R$ 50'} {/* Traduzido */}
+                      </p>
+                      <div className="mt-6">
+                        <button
+                          onClick={handleCheckout}
+                          className="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-600 hover:bg-primary-700"
+                        >
+                          Finalizar Compra {/* Traduzido */}
+                        </button>
+                      </div>
+                      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                        <p>
+                          ou{' '} {/* Traduzido */}
+                          <button
+                            type="button"
+                            className="font-medium text-primary-600 hover:text-primary-500"
+                            onClick={() => dispatch(toggleCart())}
+                          >
+                            Continuar Comprando → {/* Traduzido */}
+                          </button>
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
 
-                    <div className="mt-10 px-4 sm:px-6">
-                      {/* Step 1: Shipping Information */}
-                      {currentStep === 1 && (
-                        <form className="space-y-6">
-                          <h3 className="text-lg font-medium leading-6 text-gray-900">Shipping Information</h3>
+    // Componente de Checkout
+    const Checkout = () => {
+      const cart = useSelector(state => state.cart);
+      const isCheckoutOpen = useSelector(state => state.ui.isCheckoutOpen);
+      const currentStep = useSelector(state => state.ui.currentStep);
+      const dispatch = useDispatch();
+      
+      const [formData, setFormData] = React.useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        address: '',
+        city: '',
+        state: '',
+        zip: '',
+        cardName: '',
+        cardNumber: '',
+        expDate: '',
+        cvv: '',
+      });
+      
+      const [errors, setErrors] = React.useState({});
+      
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        
+        // Limpar erro quando o usuário digita
+        if (errors[name]) {
+          setErrors(prev => ({ ...prev, [name]: '' }));
+        }
+      };
+      
+      const validateForm = () => {
+        const newErrors = {};
+        
+        if (currentStep === 1) {
+          if (!formData.firstName) newErrors.firstName = 'Nome é obrigatório'; // Traduzido
+          if (!formData.lastName) newErrors.lastName = 'Sobrenome é obrigatório'; // Traduzido
+          if (!formData.email) newErrors.email = 'E-mail é obrigatório'; // Traduzido
+          else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'E-mail inválido'; // Traduzido
+          if (!formData.address) newErrors.address = 'Endereço é obrigatório'; // Traduzido
+          if (!formData.city) newErrors.city = 'Cidade é obrigatória'; // Traduzido
+          if (!formData.state) newErrors.state = 'Estado é obrigatório'; // Traduzido
+          if (!formData.zip) newErrors.zip = 'CEP é obrigatório'; // Traduzido
+        }
+        
+        if (currentStep === 2) {
+          if (!formData.cardName) newErrors.cardName = 'Nome no cartão é obrigatório'; // Traduzido
+          if (!formData.cardNumber) newErrors.cardNumber = 'Número do cartão é obrigatório'; // Traduzido
+          else if (!/^\d{16}$/.test(formData.cardNumber.replace(/\s/g, ''))) 
+            newErrors.cardNumber = 'Número do cartão deve ter 16 dígitos'; // Traduzido
+          if (!formData.expDate) newErrors.expDate = 'Data de validade é obrigatória'; // Traduzido
+          else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(formData.expDate)) 
+            newErrors.expDate = 'O formato deve ser MM/AA'; // Traduzido
+          if (!formData.cvv) newErrors.cvv = 'CVV é obrigatório'; // Traduzido
+          else if (!/^\d{3,4}$/.test(formData.cvv)) newErrors.cvv = 'CVV deve ter 3 ou 4 dígitos'; // Traduzido
+        }
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+      };
+      
+      const handleNext = () => {
+        if (validateForm()) {
+          dispatch(setCheckoutStep(currentStep + 1));
+        }
+      };
+      
+      const handlePrevious = () => {
+        dispatch(setCheckoutStep(currentStep - 1));
+      };
+      
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+          // Simular processamento do pedido
+          setTimeout(() => { // Simular chamada à API
+            dispatch(clearCart());
+            dispatch(setCheckoutStep(4)); // Passo de Sucesso
+          }, 1000);
+        }
+      };
+      
+      const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+      const shipping = subtotal > 50 ? 0 : 9.99;
+      const tax = subtotal * 0.08;
+      const total = subtotal + shipping + tax;
+      
+      if (!isCheckoutOpen) return null;
+      
+      return (
+        <div className="fixed inset-0 overflow-hidden z-30" aria-labelledby="checkout-title" role="dialog" aria-modal="true">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onClick={() => dispatch(toggleCheckout())}></div>
 
-                          <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                            <div>
-                              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                                First name
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="text"
-                                  id="firstName"
-                                  name="firstName"
-                                  value={formData.firstName}
-                                  onChange={handleChange}
-                                  className={`mt-1 block w-full border ${errors.firstName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.firstName && <p className="mt-2 text-sm text-red-600">{errors.firstName}</p>}
-                              </div>
-                            </div>
-
-                            <div>
-                              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                                Last name
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="text"
-                                  id="lastName"
-                                  name="lastName"
-                                  value={formData.lastName}
-                                  onChange={handleChange}
-                                  className={`mt-1 block w-full border ${errors.lastName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.lastName && <p className="mt-2 text-sm text-red-600">{errors.lastName}</p>}
-                              </div>
-                            </div>
-
-                            <div className="sm:col-span-2">
-                              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                                Email
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="email"
-                                  id="email"
-                                  name="email"
-                                  value={formData.email}
-                                  onChange={handleChange}
-                                  className={`mt-1 block w-full border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email}</p>}
-                              </div>
-                            </div>
-
-                            <div className="sm:col-span-2">
-                              <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-                                Address
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="text"
-                                  id="address"
-                                  name="address"
-                                  value={formData.address}
-                                  onChange={handleChange}
-                                  className={`mt-1 block w-full border ${errors.address ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.address && <p className="mt-2 text-sm text-red-600">{errors.address}</p>}
-                              </div>
-                            </div>
-
-                            <div>
-                              <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                                City
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="text"
-                                  id="city"
-                                  name="city"
-                                  value={formData.city}
-                                  onChange={handleChange}
-                                  className={`mt-1 block w-full border ${errors.city ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.city && <p className="mt-2 text-sm text-red-600">{errors.city}</p>}
-                              </div>
-                            </div>
-
-                            <div>
-                              <label htmlFor="state" className="block text-sm font-medium text-gray-700">
-                                State / Province
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="text"
-                                  id="state"
-                                  name="state"
-                                  value={formData.state}
-                                  onChange={handleChange}
-                                  className={`mt-1 block w-full border ${errors.state ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.state && <p className="mt-2 text-sm text-red-600">{errors.state}</p>}
-                              </div>
-                            </div>
-
-                            <div>
-                              <label htmlFor="zip" className="block text-sm font-medium text-gray-700">
-                                ZIP / Postal code
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="text"
-                                  id="zip"
-                                  name="zip"
-                                  value={formData.zip}
-                                  onChange={handleChange}
-                                  className={`mt-1 block w-full border ${errors.zip ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.zip && <p className="mt-2 text-sm text-red-600">{errors.zip}</p>}
-                              </div>
-                            </div>
-                          </div>
-                        </form>
-                      )}
-                      
-                      {/* Step 2: Payment Information */}
-                      {currentStep === 2 && (
-                        <form className="space-y-6">
-                          <h3 className="text-lg font-medium leading-6 text-gray-900">Payment Information</h3>
-
-                          <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                            <div className="sm:col-span-2">
-                              <label htmlFor="cardName" className="block text-sm font-medium text-gray-700">
-                                Name on card
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="text"
-                                  id="cardName"
-                                  name="cardName"
-                                  value={formData.cardName}
-                                  onChange={handleChange}
-                                  className={`mt-1 block w-full border ${errors.cardName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.cardName && <p className="mt-2 text-sm text-red-600">{errors.cardName}</p>}
-                              </div>
-                            </div>
-
-                            <div className="sm:col-span-2">
-                              <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700">
-                                Card number
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="text"
-                                  id="cardNumber"
-                                  name="cardNumber"
-                                  value={formData.cardNumber}
-                                  onChange={handleChange}
-                                  placeholder="XXXX XXXX XXXX XXXX"
-                                  className={`mt-1 block w-full border ${errors.cardNumber ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.cardNumber && <p className="mt-2 text-sm text-red-600">{errors.cardNumber}</p>}
-                              </div>
-                            </div>
-
-                            <div>
-                              <label htmlFor="expDate" className="block text-sm font-medium text-gray-700">
-                                Expiration date
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="text"
-                                  id="expDate"
-                                  name="expDate"
-                                  value={formData.expDate}
-                                  onChange={handleChange}
-                                  placeholder="MM/YY"
-                                  className={`mt-1 block w-full border ${errors.expDate ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.expDate && <p className="mt-2 text-sm text-red-600">{errors.expDate}</p>}
-                              </div>
-                            </div>
-
-                            <div>
-                              <label htmlFor="cvv" className="block text-sm font-medium text-gray-700">
-                                CVV
-                              </label>
-                              <div className="mt-1">
-                                <input
-                                  type="text"
-                                  id="cvv"
-                                  name="cvv"
-                                  value={formData.cvv}
-                                  onChange={handleChange}
-                                  placeholder="XXX"
-                                  className={`mt-1 block w-full border ${errors.cvv ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
-                                />
-                                {errors.cvv && <p className="mt-2 text-sm text-red-600">{errors.cvv}</p>}
-                              </div>
-                            </div>
-
-                            <div className="sm:col-span-2 flex items-start">
-                              <div className="flex items-center h-5">
-                                <input id="saveCard" name="saveCard" type="checkbox" className="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded" />
-                              </div>
-                              <div className="ml-3 text-sm">
-                                <label htmlFor="saveCard" className="font-medium text-gray-700">Save card for future purchases</label>
-                                <p className="text-gray-500">Your payment information is secure. We use encryption to protect your data.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </form>
-                      )}
-                      
-                      {/* Step 3: Review Order */}
-                      {currentStep === 3 && (
-                        <div className="space-y-6">
-                          <h3 className="text-lg font-medium leading-6 text-gray-900">Review Your Order</h3>
-
-                          <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
-                            <h4 className="text-md font-medium text-gray-900 mb-3">Shipping Information</h4>
-                            <address className="not-italic text-gray-700 text-sm">
-                              <p>{formData.firstName} {formData.lastName}</p>
-                              <p>{formData.address}</p>
-                              <p>{formData.city}, {formData.state} {formData.zip}</p>
-                              <p>{formData.email}</p>
-                            </address>
-                          </div>
-
-                          <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
-                            <h4 className="text-md font-medium text-gray-900 mb-3">Payment Method</h4>
-                            <p className="text-gray-700 text-sm">
-                              Credit Card ending in {formData.cardNumber.slice(-4)}
-                            </p>
-                          </div>
-
-                          <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
-                            <h4 className="text-md font-medium text-gray-900 mb-3">Order Summary</h4>
-                            <ul role="list" className="divide-y divide-gray-200">
-                              {cart.map((item) => (
-                                <li key={item.id} className="flex justify-between py-3">
-                                  <p className="text-sm text-gray-700">{item.quantity} x {item.name}</p>
-                                  <p className="text-sm font-medium text-gray-900">${(item.price * item.quantity).toFixed(2)}</p>
-                                </li>
-                              ))}
-                            </ul>
-                            <div className="mt-4 border-t border-gray-200 pt-4 space-y-2">
-                              <div className="flex justify-between text-sm text-gray-700">
-                                <p>Subtotal</p>
-                                <p>${subtotal.toFixed(2)}</p>
-                              </div>
-                              <div className="flex justify-between text-sm text-gray-700">
-                                <p>Shipping</p>
-                                <p>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</p>
-                              </div>
-                              <div className="flex justify-between text-sm text-gray-700">
-                                <p>Tax</p>
-                                <p>${tax.toFixed(2)}</p>
-                              </div>
-                              <div className="flex justify-between text-base font-medium text-gray-900 mt-2">
-                                <p>Total</p>
-                                <p>${total.toFixed(2)}</p>
-                              </div>
-                            </div>
-                          </div>
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+              <div className="pointer-events-auto w-screen max-w-2xl">
+                <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                  <div className="flex-1">
+                    <div className="bg-gray-50 px-4 py-6 sm:px-6">
+                      <div className="flex items-start justify-between">
+                        <h2 className="text-lg font-medium text-gray-900" id="checkout-title">
+                          Finalizar Compra {/* Traduzido */}
+                        </h2>
+                        <div className="ml-3 flex h-7 items-center">
+                          <button
+                            type="button"
+                            className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none"
+                            onClick={() => dispatch(toggleCheckout())}
+                          >
+                            <span className="sr-only">Fechar</span> {/* Traduzido */}
+                            <Icons.close />
+                          </button>
                         </div>
-                      )}
-                      
-                      {/* Step 4: Order Confirmation */}
-                      {currentStep === 4 && (
-                        <div className="text-center py-20">
-                          <Icons.check className="mx-auto h-20 w-20 text-green-500" />
-                          <h3 className="mt-4 text-3xl font-extrabold text-gray-900">Order Successful!</h3>
-                          <p className="mt-2 text-base text-gray-500">
-                            Thank you for your order. Your order number is **#ORD-{Math.floor(Math.random() * 10000)}**.
-                            We've sent you an email with all the details.
-                          </p>
-                          <div className="mt-6">
-                            <button
-                              type="button"
-                              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                              onClick={() => { dispatch(toggleCheckout()); dispatch(setCheckoutStep(1)); }}
-                            >
-                              Continue Shopping
-                            </button>
+                      </div>
+
+                      <div className="mt-8">
+                        {/* Passos do Checkout */}
+                        <nav className="flex items-center justify-center">
+                          <div className="flex items-center space-x-2">
+                            <div className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-bold ${currentStep >= 1 ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+                              1
+                            </div>
+                            <span className="text-sm font-medium text-gray-900">Entrega</span> {/* Traduzido */}
+                          </div>
+                          <div className={`flex-1 mx-2 h-0.5 rounded-full ${currentStep >= 2 ? 'bg-primary-600' : 'bg-gray-200'}`}></div>
+
+                          <div className="flex items-center space-x-2">
+                            <div className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-bold ${currentStep >= 2 ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+                              2
+                            </div>
+                            <span className="text-sm font-medium text-gray-900">Pagamento</span> {/* Traduzido */}
+                          </div>
+                          <div className={`flex-1 mx-2 h-0.5 rounded-full ${currentStep >= 3 ? 'bg-primary-600' : 'bg-gray-200'}`}></div>
+
+                          <div className="flex items-center space-x-2">
+                            <div className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-bold ${currentStep >= 3 ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+                              3
+                            </div>
+                            <span className="text-sm font-medium text-gray-900">Revisar</span> {/* Traduzido */}
+                          </div>
+                        </nav>
+
+                        <div className="mt-10 px-4 sm:px-6">
+                          {/* Passo 1: Informações de Entrega */}
+                          {currentStep === 1 && (
+                            <form className="space-y-6">
+                              <h3 className="text-lg font-medium leading-6 text-gray-900">Informações de Entrega</h3> {/* Traduzido */}
+
+                              <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+                                <div>
+                                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                                    Primeiro Nome
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="text"
+                                      id="firstName"
+                                      name="firstName"
+                                      value={formData.firstName}
+                                      onChange={handleChange}
+                                      className={`mt-1 block w-full border ${errors.firstName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.firstName && <p className="mt-2 text-sm text-red-600">{errors.firstName}</p>}
+                                  </div>
+                                </div>
+
+                                <div>
+                                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                                    Sobrenome
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="text"
+                                      id="lastName"
+                                      name="lastName"
+                                      value={formData.lastName}
+                                      onChange={handleChange}
+                                      className={`mt-1 block w-full border ${errors.lastName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.lastName && <p className="mt-2 text-sm text-red-600">{errors.lastName}</p>}
+                                  </div>
+                                </div>
+
+                                <div className="sm:col-span-2">
+                                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                                    E-mail
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="email"
+                                      id="email"
+                                      name="email"
+                                      value={formData.email}
+                                      onChange={handleChange}
+                                      className={`mt-1 block w-full border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email}</p>}
+                                  </div>
+                                </div>
+
+                                <div className="sm:col-span-2">
+                                  <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                                    Endereço
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="text"
+                                      id="address"
+                                      name="address"
+                                      value={formData.address}
+                                      onChange={handleChange}
+                                      className={`mt-1 block w-full border ${errors.address ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.address && <p className="mt-2 text-sm text-red-600">{errors.address}</p>}
+                                  </div>
+                                </div>
+
+                                <div>
+                                  <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                                    Cidade
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="text"
+                                      id="city"
+                                      name="city"
+                                      value={formData.city}
+                                      onChange={handleChange}
+                                      className={`mt-1 block w-full border ${errors.city ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.city && <p className="mt-2 text-sm text-red-600">{errors.city}</p>}
+                                  </div>
+                                </div>
+
+                                <div>
+                                  <label htmlFor="state" className="block text-sm font-medium text-gray-700">
+                                    Estado / Província
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="text"
+                                      id="state"
+                                      name="state"
+                                      value={formData.state}
+                                      onChange={handleChange}
+                                      className={`mt-1 block w-full border ${errors.state ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.state && <p className="mt-2 text-sm text-red-600">{errors.state}</p>}
+                                  </div>
+                                </div>
+
+                                <div>
+                                  <label htmlFor="zip" className="block text-sm font-medium text-gray-700">
+                                    CEP / Código Postal
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="text"
+                                      id="zip"
+                                      name="zip"
+                                      value={formData.zip}
+                                      onChange={handleChange}
+                                      className={`mt-1 block w-full border ${errors.zip ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.zip && <p className="mt-2 text-sm text-red-600">{errors.zip}</p>}
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          )}
+                          
+                          {/* Passo 2: Informações de Pagamento */}
+                          {currentStep === 2 && (
+                            <form className="space-y-6">
+                              <h3 className="text-lg font-medium leading-6 text-gray-900">Informações de Pagamento</h3> {/* Traduzido */}
+
+                              <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+                                <div className="sm:col-span-2">
+                                  <label htmlFor="cardName" className="block text-sm font-medium text-gray-700">
+                                    Nome no Cartão
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="text"
+                                      id="cardName"
+                                      name="cardName"
+                                      value={formData.cardName}
+                                      onChange={handleChange}
+                                      className={`mt-1 block w-full border ${errors.cardName ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.cardName && <p className="mt-2 text-sm text-red-600">{errors.cardName}</p>}
+                                  </div>
+                                </div>
+
+                                <div className="sm:col-span-2">
+                                  <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700">
+                                    Número do Cartão
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="text"
+                                      id="cardNumber"
+                                      name="cardNumber"
+                                      value={formData.cardNumber}
+                                      onChange={handleChange}
+                                      placeholder="XXXX XXXX XXXX XXXX"
+                                      className={`mt-1 block w-full border ${errors.cardNumber ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.cardNumber && <p className="mt-2 text-sm text-red-600">{errors.cardNumber}</p>}
+                                  </div>
+                                </div>
+
+                                <div>
+                                  <label htmlFor="expDate" className="block text-sm font-medium text-gray-700">
+                                    Data de Validade
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="text"
+                                      id="expDate"
+                                      name="expDate"
+                                      value={formData.expDate}
+                                      onChange={handleChange}
+                                      placeholder="MM/AA"
+                                      className={`mt-1 block w-full border ${errors.expDate ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.expDate && <p className="mt-2 text-sm text-red-600">{errors.expDate}</p>}
+                                  </div>
+                                </div>
+
+                                <div>
+                                  <label htmlFor="cvv" className="block text-sm font-medium text-gray-700">
+                                    CVV
+                                  </label> {/* Traduzido */}
+                                  <div className="mt-1">
+                                    <input
+                                      type="text"
+                                      id="cvv"
+                                      name="cvv"
+                                      value={formData.cvv}
+                                      onChange={handleChange}
+                                      placeholder="XXX"
+                                      className={`mt-1 block w-full border ${errors.cvv ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm`}
+                                    />
+                                    {errors.cvv && <p className="mt-2 text-sm text-red-600">{errors.cvv}</p>}
+                                  </div>
+                                </div>
+
+                                <div className="sm:col-span-2 flex items-start">
+                                  <div className="flex items-center h-5">
+                                    <input id="saveCard" name="saveCard" type="checkbox" className="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded" />
+                                  </div>
+                                  <div className="ml-3 text-sm">
+                                    <label htmlFor="saveCard" className="font-medium text-gray-700">Salvar cartão para futuras compras</label> {/* Traduzido */}
+                                    <p className="text-gray-500">Suas informações de pagamento estão seguras. Usamos criptografia para proteger seus dados.</p> {/* Traduzido */}
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          )}
+                          
+                          {/* Passo 3: Revisar Pedido */}
+                          {currentStep === 3 && (
+                            <div className="space-y-6">
+                              <h3 className="text-lg font-medium leading-6 text-gray-900">Revise Seu Pedido</h3> {/* Traduzido */}
+
+                              <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                <h4 className="text-md font-medium text-gray-900 mb-3">Informações de Entrega</h4> {/* Traduzido */}
+                                <address className="not-italic text-gray-700 text-sm">
+                                  <p>{formData.firstName} {formData.lastName}</p>
+                                  <p>{formData.address}</p>
+                                  <p>{formData.city}, {formData.state} {formData.zip}</p>
+                                  <p>{formData.email}</p>
+                                </address>
+                              </div>
+
+                              <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                <h4 className="text-md font-medium text-gray-900 mb-3">Método de Pagamento</h4> {/* Traduzido */}
+                                <p className="text-gray-700 text-sm">
+                                  Cartão de Crédito final {formData.cardNumber.slice(-4)} {/* Traduzido */}
+                                </p>
+                              </div>
+
+                              <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                <h4 className="text-md font-medium text-gray-900 mb-3">Resumo do Pedido</h4> {/* Traduzido */}
+                                <ul role="list" className="divide-y divide-gray-200">
+                                  {cart.map((item) => (
+                                    <li key={item.id} className="flex justify-between py-3">
+                                      <p className="text-sm text-gray-700">{item.quantity} x {item.name}</p>
+                                      <p className="text-sm font-medium text-gray-900">R${(item.price * item.quantity).toFixed(2)}</p> {/* Traduzido para R$ */}
+                                    </li>
+                                  ))}
+                                </ul>
+                                <div className="mt-4 border-t border-gray-200 pt-4 space-y-2">
+                                  <div className="flex justify-between text-sm text-gray-700">
+                                    <p>Subtotal</p> {/* Traduzido */}
+                                    <p>R${subtotal.toFixed(2)}</p> {/* Traduzido para R$ */}
+                                  </div>
+                                  <div className="flex justify-between text-sm text-gray-700">
+                                    <p>Frete</p> {/* Traduzido */}
+                                    <p>{shipping === 0 ? 'Grátis' : `R$${shipping.toFixed(2)}`}</p> {/* Traduzido */}
+                                  </div>
+                                  <div className="flex justify-between text-sm text-gray-700">
+                                    <p>Imposto</p> {/* Traduzido */}
+                                    <p>R${tax.toFixed(2)}</p> {/* Traduzido para R$ */}
+                                  </div>
+                                  <div className="flex justify-between text-base font-medium text-gray-900 mt-2">
+                                    <p>Total</p> {/* Traduzido */}
+                                    <p>R${total.toFixed(2)}</p> {/* Traduzido para R$ */}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                          
+                          {/* Passo 4: Confirmação do Pedido */}
+                          {currentStep === 4 && (
+                            <div className="text-center py-20">
+                              <Icons.check className="mx-auto h-20 w-20 text-green-500" />
+                              <h3 className="mt-4 text-3xl font-extrabold text-gray-900">Pedido Realizado com Sucesso!</h3> {/* Traduzido */}
+                              <p className="mt-2 text-base text-gray-500">
+                                Obrigado pelo seu pedido. O número do seu pedido é **#ORD-{Math.floor(Math.random() * 10000)}**. {/* Traduzido */}
+                                Enviamos um e-mail com todos os detalhes. {/* Traduzido */}
+                              </p>
+                              <div className="mt-6">
+                                <button
+                                  type="button"
+                                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                                  onClick={() => { dispatch(toggleCheckout()); dispatch(setCheckoutStep(1)); }}
+                                >
+                                  Continuar Comprando {/* Traduzido */}
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Botões do Rodapé */}
+                      {currentStep > 0 && currentStep < 4 && (
+                        <div className="flex-shrink-0 px-4 py-4 sm:px-6 border-t border-gray-200 bg-gray-50">
+                          <div className="flex justify-end space-x-3">
+                            {currentStep > 1 && (
+                              <button
+                                type="button"
+                                className="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:w-auto sm:text-sm"
+                                onClick={handlePrevious}
+                              >
+                                <Icons.chevronLeft className="-ml-1 mr-2 h-5 w-5" />
+                                Anterior {/* Traduzido */}
+                              </button>
+                            )}
+                            {currentStep < 3 ? (
+                              <button
+                                type="button"
+                                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm"
+                                onClick={handleNext}
+                              >
+                                Próximo {/* Traduzido */}
+                                <Icons.chevronRight className="ml-2 -mr-1 h-5 w-5" />
+                              </button>
+                            ) : (
+                              <button
+                                type="submit"
+                                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm"
+                                onClick={handleSubmit}
+                              >
+                                Fazer Pedido {/* Traduzido */}
+                              </button>
+                            )}
                           </div>
                         </div>
                       )}
                     </div>
                   </div>
                 </div>
-
-                {/* Footer buttons */}
-                {currentStep > 0 && currentStep < 4 && (
-                  <div className="flex-shrink-0 px-4 py-4 sm:px-6 border-t border-gray-200 bg-gray-50">
-                    <div className="flex justify-end space-x-3">
-                      {currentStep > 1 && (
-                        <button
-                          type="button"
-                          className="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:w-auto sm:text-sm"
-                          onClick={handlePrevious}
-                        >
-                          <Icons.chevronLeft className="-ml-1 mr-2 h-5 w-5" />
-                          Previous
-                        </button>
-                      )}
-                      {currentStep < 3 ? (
-                        <button
-                          type="button"
-                          className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm"
-                          onClick={handleNext}
-                        >
-                          Next
-                          <Icons.chevronRight className="ml-2 -mr-1 h-5 w-5" />
-                        </button>
-                      ) : (
-                        <button
-                          type="submit"
-                          className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-600 text-base font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm"
-                          onClick={handleSubmit}
-                        >
-                          Place Order
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+          );
+        };
 
-// Main App Component
-const App = () => {
-  return (
-    <Provider store={store}>
-      <div className="min-h-screen">
-        <Header />
-        <Hero />
-        <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <Filters />
-          <ProductList />
-        </main>
-        <Cart />
-        <Checkout />
-      </div>
-    </Provider>
-  );
-};
+        // Componente Principal da Aplicação
+        const App = () => {
+          return (
+            <Provider store={store}>
+              <div className="min-h-screen">
+                <Header />
+                <Hero />
+                <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+                  <Filters />
+                  <ProductList />
+                </main>
+                <Cart />
+                <Checkout />
+              </div>
+            </Provider>
+          );
+        };
 
-// Render the App
-ReactDOM.render(<App />, document.getElementById('root'));
-
-    
+        // Renderiza a Aplicação
+        ReactDOM.render(<App />, document.getElementById('root'));
   </script>
 </body>
 </html>
